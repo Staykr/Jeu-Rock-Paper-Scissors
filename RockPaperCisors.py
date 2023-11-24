@@ -4,8 +4,13 @@ def user_choice():
     print("1 = Pierre")
     print("2 = Papier")
     print("3 = Ciseaux")
-    choice = input("Faites votre choix (1, 2, ou 3) : ")
-    return int(choice)
+    while True:
+        choice = input("Faites votre choix (1, 2, ou 3) : ")
+        
+        try:
+            return int(choice)
+        except ValueError:
+            print("Erreur : Veuillez entrer un nombre.")
 
 # Computer choice
 def pc_choice():
@@ -24,7 +29,7 @@ def choose_winer(choix_utilisateur: int, choix_ordinateur: int):
         (3, 2): "Vous avez gagné! GG WP",
         (3, 3): "Égalité! (CHOKBAR DE ZINZIN)"
     }
-# How to get the result
+# Print an error message if the user writes a choice other than those available
     result = rules.get((choix_utilisateur, choix_ordinateur), "Choix invalides!")
     return result
 
@@ -34,12 +39,12 @@ def restart_game():
 
 # Gameplay
 def play():
-    print("Bienvenue au jeu Pierre-Papier-Ciseaux!")
     
     while True:
+        print("Bienvenue au jeu Pierre-Papier-Ciseaux!")
         choix_user: int = user_choice()
         choix_pc: int = pc_choice()
-        
+
         print("Vous avez choisi " + str(choix_user))
         print("L'ordinateur a choisi " + str(choix_pc))
         
@@ -50,5 +55,5 @@ def play():
             print("Merci d'avoir joué! A la prochaine.")
             break
 
-#Call the play function to start the game
+#Call the function to start the game
 play()
